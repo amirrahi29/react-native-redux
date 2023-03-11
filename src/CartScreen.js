@@ -53,7 +53,15 @@ const CartScreen = () => {
 
             <View
                 style={{ backgroundColor: 'red', borderRadius: 8, position: 'absolute', bottom: 8, left: 8, padding: 16 }}>
-                <Text style={{ color: 'white', fontSize: 16 }}>Total Price: {price}</Text>
+                <Text style={{ color: 'white', fontSize: 16 }}>Total Items: {getCartData.length}</Text>
+                <Text style={{ color: 'white', fontSize: 16 }}>Total Price: Rs.{price}</Text>
+                <TouchableOpacity>
+                    <Text style={{
+                        backgroundColor: 'blue', padding: 8,
+                        fontSize: 20,
+                        borderRadius: 8, marginTop: 8, color: 'white'
+                    }}>Checkout</Text>
+                </TouchableOpacity>
             </View>
 
 
