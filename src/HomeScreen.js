@@ -1,4 +1,4 @@
-import { View, Text, FlatList, Image, TouchableOpacity, TextInput } from 'react-native'
+import { View, Text, FlatList, Image, TouchableOpacity, TextInput, ActivityIndicator } from 'react-native'
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import myStyles from './css/Styles';
@@ -40,6 +40,7 @@ const HomeScreen = () => {
 
   return (
     <View style={myStyles.container}>
+
       <View style={{
         backgroundColor: 'green', width: '100%',
         marginBottom: 4,
@@ -105,6 +106,18 @@ const HomeScreen = () => {
         style={{ backgroundColor: 'red', borderRadius: 100, position: 'absolute', top: 8, right: 8, padding: 16 }}>
         <Text style={{ color: 'white', fontSize: 20 }}>Total Items: {getCartData.length}</Text>
       </TouchableOpacity>
+
+      {mainProduct == "" ?
+        <ActivityIndicator
+        color='white'
+          size='large'
+          style={{
+            position: 'absolute',
+            top: 0,
+            bottom: 0,
+          }}
+        />
+        : null}
 
     </View>
   )

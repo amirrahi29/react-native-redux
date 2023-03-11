@@ -1,6 +1,7 @@
 import { View, Text, FlatList, Image, TouchableOpacity } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
+import RazorpayCheckout from 'react-native-razorpay';
 import { REMOVE_CART } from './redux/actions/action';
 
 const CartScreen = () => {
@@ -55,7 +56,30 @@ const CartScreen = () => {
                 style={{ backgroundColor: 'red', borderRadius: 8, position: 'absolute', bottom: 8, left: 8, padding: 16 }}>
                 <Text style={{ color: 'white', fontSize: 16 }}>Total Items: {getCartData.length}</Text>
                 <Text style={{ color: 'white', fontSize: 16 }}>Total Price: Rs.{price}</Text>
-                <TouchableOpacity>
+                <TouchableOpacity
+                onPress={() => {
+                    var options = {
+                      description: 'product description',
+                      image: 'https://rojkharido.com/static/media/logo.30546a93.png',
+                      currency: 'INR',
+                      key: 'rzp_test_MjbySASEFjNhn1', // Your api key
+                      amount: parseInt(price*100),
+                      name: 'Amir',
+                      prefill: {
+                        email: 'void@razorpay.com',
+                        contact: '9191919191',
+                        name: 'Razorpay Software'
+                      },
+                      theme: {color: '#F37254'}
+                    }
+                    RazorpayCheckout.open(options).then((data) => {
+                      // handle success
+                      alert(`Success: ${data.razorpay_payment_id}`);
+                    }).catch((error) => {
+                      // handle failure
+                      alert(`Error: ${error.code} | ${error.description}`);
+                    });
+                  }}>
                     <Text style={{
                         backgroundColor: 'blue', padding: 8,
                         fontSize: 20,
