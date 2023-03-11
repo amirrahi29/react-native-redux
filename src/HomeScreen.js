@@ -1,4 +1,4 @@
-import { View, Text, FlatList, Image, TouchableOpacity } from 'react-native'
+import { View, Text, FlatList, Image, TouchableOpacity, TextInput } from 'react-native'
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import myStyles from './css/Styles';
@@ -9,6 +9,7 @@ const HomeScreen = () => {
 
   const navigation = useNavigation();
 
+  const [mainProduct, setMainProduct] = useState([]);
   const [product, setProduct] = useState([]);
   const dispatch = useDispatch();
   const getCartData = useSelector((state) => state.cartReducer.carts);
@@ -21,7 +22,19 @@ const HomeScreen = () => {
     let result = await fetch("https://fakestoreapi.com/products");
     result = await result.json();
     if (result) {
+      setMainProduct(result);
       setProduct(result);
+    }
+  }
+
+  const handleSearch = (query) => {
+    if (query == "") {
+      setProduct(mainProduct);
+      console.log(product);
+    } else {
+      const data = mainProduct.filter(x => x.title.includes(query));
+      setProduct(data);
+      console.log(product);
     }
   }
 
@@ -34,6 +47,16 @@ const HomeScreen = () => {
       }}>
         <Text style={{ color: 'white', fontSize: 16 }}>My Home Page</Text>
       </View>
+
+      <View style={{ backgroundColor: 'pink', width: '95%', margin: 8 }}>
+        <TextInput
+          onChangeText={(e) => handleSearch(e)}
+          placeholderTextColor='blue'
+          style={{ height: 40, alignSelf: 'flex-start', color: 'blue',width:'100%' }}
+          placeholder="Search here..."
+        />
+      </View>
+
       <FlatList
         data={product}
         renderItem={({ item, index }) => {
