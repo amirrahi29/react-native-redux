@@ -48,11 +48,11 @@ const HomeScreen = () => {
         <Text style={{ color: 'white', fontSize: 16 }}>My Home Page</Text>
       </View>
 
-      <View style={{ backgroundColor: 'pink', width: '95%', margin: 8 }}>
+      <View style={{ backgroundColor: 'pink', width: '95%', margin: 8, borderRadius: 4, padding: 4 }}>
         <TextInput
           onChangeText={(e) => handleSearch(e)}
           placeholderTextColor='blue'
-          style={{ height: 40, alignSelf: 'flex-start', color: 'blue',width:'100%' }}
+          style={{ height: 40, alignSelf: 'flex-start', color: 'blue', width: '100%' }}
           placeholder="Search here..."
         />
       </View>
