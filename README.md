@@ -1,1 +1,1 @@
-![New Project](https://user-images.githubusercontent.com/107117774/224504073-fa4681e7-6ad6-426c-9c02-30a54d3ef9d6.png)
+![thumbnail](https://user-images.githubusercontent.com/107117774/224537255-9ca500d1-552a-4dde-9be0-4b12db335604.png)
